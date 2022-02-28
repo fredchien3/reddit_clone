@@ -2,19 +2,20 @@ class PostsController < ApplicationController
   before_action :require_logged_in, only: [:new, :create]
 
   def new
+    @post = Post.new
     render :new
   end
 
   def create
-    post = Post.new(post_params)
-    post.user_id = current_user.id
-    post.sub_id = 0
-    post.sub_ids = post_params[:sub_ids]
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    @post.sub_id = 0
+    @post.sub_ids = post_params[:sub_ids]
 
-    if post.save!
-      redirect_to post_url(post), notice: "Post created successfully!"
+    if @post.save!
+      redirect_to post_url(@post), notice: "Post created successfully!"
     else
-      flash.now[:errors] = post.errors.full_messages
+      flash.now[:errors] = @post.errors.full_messages
       render :new
     end
   end

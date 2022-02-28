@@ -1,0 +1,29 @@
+<% if action == :edit %>
+  <% action_url = sub_url(sub) %>
+<% else %>
+  <% action_url = subs_url %>
+<% end %>
+
+<form action="<%= action_url %>" method="post">
+  <%= auth_token %>
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+  <label for="title">Subfreddit Title:</label>
+  <input type="text" name="sub[title]" id="title" value="<%= sub.title %>">
+  <br>
+  <label for="description">Description:</label>
+  <br>
+  <textarea name="sub[description]" id="description" placeholder="Describe what this Subfreddit is about..."><%= sub.description %></textarea>
+  <br>
+
+  <% if action == :edit %>
+    <p><%= current_user.username %> is the moderator of this subfreddit.</p>
+  <% else %>
+    <p><%= current_user.username %> will be the moderator of this subfreddit.</p>
+  <% end %>
+  <br>
+
+  <input type="submit" value="<%= action == :edit ? 'Update Sub' : 'Create Sub' %>">
+</form>
