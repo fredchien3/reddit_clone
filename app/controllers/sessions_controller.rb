@@ -6,10 +6,11 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by_credentials(params[:user][:username], params[:user][:password])
     if user.nil?
-      render json: "username or password were incorrect"
+      flash.now[:notice] = "The username and/or password were incorrect."
+      render :new
     else
       log_in!(user)
-      redirect_to users_url
+      redirect_to subs_url
     end
   end
 

@@ -21,8 +21,13 @@
         <input type="submit" value="Sign Out">
       </form>
     <% end %>
-
-  </header>
+    <br>
+    <a href="<%= subs_url %>">All Subs</a>
+    <br>
+    <% flash.each do |type, msg| %>
+      <div class="flash"><%= msg %></div>
+    <% end %>
+    </header>
   <body>
     <%= yield %>
   </body>

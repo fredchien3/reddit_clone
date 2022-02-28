@@ -1,0 +1,13 @@
+<h1><%= @post.title %></h1>
+<% if current_user == @post.author %>
+  <a href="<%= edit_post_url %>">Edit Post</a>
+  <form action="<%= post_url(@post) %>" method="post">
+    <%= auth_token %>
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Post">
+  </form>
+<% end %>
+
+<p><%= @post.url %></p>
+<p><%= @post.content %></p>
+<p><%= @post.subs %></p>

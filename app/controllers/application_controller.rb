@@ -18,7 +18,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_logged_in
-    
+    if session[:session_token].nil?
+      redirect_to new_session_url, notice: "Please sign in first!"
+    end
   end
 
 end

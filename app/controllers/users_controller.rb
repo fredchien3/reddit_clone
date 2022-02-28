@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-  def index # temporary
-    render json: 'user index'
-  end
+  # def index # temporary
+  #   render json: 'user index'
+  # end
 
   def new
     # @user = User.new
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save!
-      login!(user)
+      log_in!(user)
       redirect_to subs_url
     else
       flash[:errors] = user.errors.full_messages
