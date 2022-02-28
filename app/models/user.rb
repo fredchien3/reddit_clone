@@ -4,8 +4,9 @@ class User < ApplicationRecord
   validates_length_of :password, minimum: 6, allow_nil: true # the missing piece
   after_initialize :ensure_session_token
 
-  has_many :subs, dependent: :destroy
-  has_many :posts, dependent: :destroy
+  has_many :subs
+  has_many :posts
+  has_many :comments
 
   def password=(password)
     @password = password

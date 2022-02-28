@@ -1,0 +1,11 @@
+<% action_url = 'comments_url' %>
+<form action="/comments" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="comment[post_id]" value="<%= @post.id %>">
+  <label for="text">Content:</label>
+  <br>
+  <textarea name="comment[content]" id="description" placeholder="Type your comment here"><%= comment.content %></textarea>
+  <br>
+
+  <input type="submit" value="<%= action == :edit ? 'Update Comment' : 'Post Comment' %>">
+</form>

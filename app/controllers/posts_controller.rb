@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     if @post.author != current_user
-      redirect_to post_url(@post), notice: "Only the post moderator can edit the post!"
+      redirect_to post_url(@post), notice: "Only the post author can edit the post!"
     else
       render :edit
     end
@@ -47,8 +47,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Sub.find(params[:id])
-    if @post.moderator != current_user
-      redirect_to post_url(@post), notice: "Only the post moderator can delete the post!"
+    if @post.author != current_user
+      redirect_to post_url(@post), notice: "Only the post author can delete the post!"
     else
       @post.destroy!
       redirect_to posts_url
