@@ -12,14 +12,17 @@
   <br>
   <textarea name="post[content]" id="description" placeholder="Text Content!"></textarea>
   <br>
-  <label for="sub">Subfreddit:</label>
-  <select name="post[sub_id]" id="sub">
-    <option disabled>--select a subfreddit--</option>
+  <label for="sub">Subfreddits:</label>
     <% Sub.all.each do |sub| %>
-      <option value="<%= sub.id %>"><%= sub.title %></option>
+      <label><%= sub.title %>
+        <input
+          type="checkbox"
+          value="<%= sub.id %>"
+          name="post[sub_ids][]"
+          id="sub"
+          />
+      </label>
     <% end %>
-  </select>
-
   <br>
 
   <button type="submit">Create Post</button>

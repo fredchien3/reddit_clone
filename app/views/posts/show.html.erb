@@ -1,4 +1,8 @@
-<h2><a href="<%= sub_url(@post.sub) %>"><%= @post.sub.title %></a></h2>
+<ul>
+  <% @post.subs.each do |sub| %>
+    <li><a href="<%= sub_url(sub) %>"><%= sub.title %></a></li>
+  <% end %>
+</ul>
 <h1><%= @post.title %></h1>
 <p>By <%= @post.author.username %></p>
 <% if current_user == @post.author %>

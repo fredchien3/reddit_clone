@@ -5,5 +5,6 @@ class Sub < ApplicationRecord
     class_name: 'User',
     foreign_key: :user_id
 
-  has_many :posts, dependent: :destroy
+  has_many :post_subs, dependent: :destroy, inverse_of: :sub
+  has_many :posts, through: :post_subs, dependent: :destroy
 end

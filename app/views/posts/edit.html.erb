@@ -13,13 +13,18 @@
   <br>
   <textarea name="post[content]" id="description" placeholder="Text Content!"><%= @post.content %></textarea>
   <br>
-  <label for="sub">Subfreddit:</label>
-  <select name="post[sub_id]" id="sub">
-    <option disabled>--select a subfreddit--</option>
-    <% Sub.all.each do |sub| %>
-      <option value="<%= sub.id %>" <%= 'selected' if sub == @post.sub %>><%= sub.title %></option>
-    <% end %>
-  </select>
-
+  <label for="sub">Subfreddits:</label>
+  <% Sub.all.each do |sub| %>
+    <label><%= sub.title %>
+      <input
+        type="checkbox"
+        value="<%= sub.id %>"
+        name="post[sub_ids][]"
+        id="sub"
+        <%= 'checked' if @post.subs.include? sub %>
+        />
+    </label>
+  <% end %>
+  <br>
   <button type="submit">Edit Post</button>
 </form>
