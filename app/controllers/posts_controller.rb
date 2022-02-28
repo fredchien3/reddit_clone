@@ -10,6 +10,9 @@ class PostsController < ApplicationController
     post.user_id = current_user.id
     if post.save!
       redirect_to post_url(post), notice: "Post created successfully!"
+    else
+      flash.now[:errors] = post.errors.full_messages
+      render :new
     end
   end
 
@@ -20,7 +23,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    if @post.moderator != current_user
+    if @post.author != current_user
       redirect_to post_url(@post), notice: "Only the post moderator can edit the post!"
     else
       render :edit
@@ -50,6 +53,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :description, :url, :content)
+    params.require(:post).permit(:title, :description, :url, :content, :sub_id)
   end
 end

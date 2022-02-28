@@ -7,3 +7,9 @@
     <input type="submit" value="Delete Sub">
   </form>
 <% end %>
+<h3><a href="<%= new_post_url %>">Create Post</a></h3>
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li><a href="<%= post_url(post) %>"><%= post.title %></a></li>
+  <% end %>
+</ul>

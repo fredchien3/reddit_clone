@@ -1,4 +1,4 @@
-<h1>Edit SubFreddit</h1>
+<h1>Edit Subfreddit</h1>
 <form action="<%= sub_url(@sub) %>" method="post">
   <input type="hidden" name="_method" value="PATCH">
   <%= auth_token %>
@@ -9,7 +9,7 @@
   <label for="description">Description:</label>
   <br>
 
-  <textarea name="sub[description]" id="description" placeholder="Describe what this SubFreddit is about!"><%= @sub.description %></textarea>
+  <textarea name="sub[description]" id="description" placeholder="Describe what this Subfreddit is about!"><%= @sub.description %></textarea>
   <br>
   <p><%= current_user.username %> is the moderator of the Sub.</p>
   <br>
